@@ -6,7 +6,7 @@ COPY package.json .
 COPY yarn.lock .
 COPY prisma/schema.prisma .
 
-RUN yarn --no-cache --production
+RUN yarn --frozen-lockfile --no-cache --production
 
 COPY . .
 
