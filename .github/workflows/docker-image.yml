@@ -40,4 +40,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/rallly-cleaned:latest
-            ${{ secrets.DOCKER_USERNAME }}/aottr/rallly-cleaned:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/rallly-cleaned:${{ github.sha }}
