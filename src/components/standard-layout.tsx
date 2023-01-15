@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { Trans, useTranslation } from "next-i18next";
 import React from "react";
 
 import Menu from "@/components/icons/menu.svg";
@@ -12,8 +12,6 @@ import Logo from "~/public/logo.svg";
 import { DayjsProvider } from "../utils/dayjs";
 import Dropdown, { DropdownItem, DropdownProps } from "./dropdown";
 import Adjustments from "./icons/adjustments.svg";
-import Cash from "./icons/cash.svg";
-import Discord from "./icons/discord.svg";
 import DotsVertical from "./icons/dots-vertical.svg";
 import Github from "./icons/github.svg";
 import Login from "./icons/login.svg";
@@ -366,46 +364,35 @@ const StandardLayout: React.VoidFunctionComponent<{
                 >
                   {t("common:support")}
                 </a>
-                <Link href="https://github.com/lukevella/rallly/discussions">
-                  <a className="text-sm text-slate-400 transition-colors hover:text-primary-500 hover:no-underline">
-                    {t("common:discussions")}
-                  </a>
-                </Link>
-                <Link href="https://blog.rallly.co">
-                  <a className="text-sm text-slate-400 transition-colors hover:text-primary-500 hover:no-underline">
-                    {t("common:blog")}
-                  </a>
-                </Link>
                 <div className="hidden text-slate-300 lg:block">&bull;</div>
                 <div className="flex items-center space-x-6">
                   <a
-                    href="https://twitter.com/ralllyco"
+                    href="https://twitter.com/alexottr"
                     className="text-sm text-slate-400 transition-colors hover:text-primary-500 hover:no-underline"
                   >
                     <Twitter className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://github.com/lukevella/rallly"
+                    href="https://github.com/aottr"
                     className="text-sm text-slate-400 transition-colors hover:text-primary-500 hover:no-underline"
                   >
                     <Github className="h-5 w-5" />
                   </a>
-                  <a
-                    href="https://discord.gg/uzg4ZcHbuM"
-                    className="text-sm text-slate-400 transition-colors hover:text-primary-500 hover:no-underline"
-                  >
-                    <Discord className="h-5 w-5" />
-                  </a>
                 </div>
               </div>
               <div className="hidden text-slate-300 lg:block">&bull;</div>
-              <a
-                href="https://www.paypal.com/donate/?hosted_button_id=7QXP2CUBLY88E"
-                className="inline-flex h-8 items-center rounded-full bg-slate-100 pl-2 pr-3 text-sm text-slate-400 transition-colors hover:bg-primary-500 hover:text-white hover:no-underline focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:bg-primary-600"
-              >
-                <Cash className="mr-1 inline-block w-5" />
-                <span>{t("app:donate")}</span>
-              </a>
+              <Trans
+                t={t}
+                i18nKey="common:footerCredit"
+                components={{
+                  a: (
+                    <a
+                      className="font-normal leading-loose text-slate-400 underline hover:text-slate-800 hover:underline"
+                      href="https://twitter.com/imlukevella"
+                    />
+                  ),
+                }}
+              />
             </div>
           </div>
         </div>

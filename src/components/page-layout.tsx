@@ -2,7 +2,7 @@ import clsx from "clsx";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Trans, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import * as React from "react";
 import { createBreakpoint } from "react-use";
 
@@ -24,8 +24,22 @@ const Menu: React.VoidFunctionComponent<{ className: string }> = ({
 }) => {
   const { pathname } = useRouter();
   const { t } = useTranslation("common");
+  const th = useTranslation("homepage");
   return (
     <nav className={className}>
+      <Link href="/new">
+        <a
+          className={clsx(
+            "text-gray-400 transition-colors hover:text-primary-500 hover:no-underline hover:underline-offset-2",
+            {
+              "pointer-events-none font-bold text-gray-600":
+                pathname === "/new",
+            },
+          )}
+        >
+          {th.t("new")}
+        </a>
+      </Link>
       <Link href="/">
         <a
           className={clsx(
@@ -39,22 +53,7 @@ const Menu: React.VoidFunctionComponent<{ className: string }> = ({
           {t("home")}
         </a>
       </Link>
-      <Link href="https://blog.rallly.co">
-        <a
-          className={clsx(
-            "text-gray-400 transition-colors hover:text-primary-500 hover:no-underline hover:underline-offset-2",
-          )}
-        >
-          {t("blog")}
-        </a>
-      </Link>
-      <a
-        href="https://support.rallly.co"
-        className="text-gray-400 transition-colors hover:text-primary-500 hover:no-underline hover:underline-offset-2"
-      >
-        {t("support")}
-      </a>
-      <Link href="https://github.com/lukevella/rallly">
+      <Link href="https://github.com/aottr/rallly-cleaned">
         <a className="text-gray-400 transition-colors hover:text-primary-500 hover:no-underline hover:underline-offset-2">
           <Github className="w-6" />
         </a>
@@ -67,7 +66,6 @@ const PageLayout: React.VoidFunctionComponent<PageLayoutProps> = ({
   children,
 }) => {
   const breakpoint = useBreakpoint();
-  const { t } = useTranslation("homepage");
   return (
     <div className="bg-pattern min-h-full overflow-x-hidden">
       <div className="mx-auto flex max-w-7xl items-center py-8 px-8">
@@ -78,9 +76,6 @@ const PageLayout: React.VoidFunctionComponent<PageLayoutProps> = ({
                 <Logo className="w-40 text-primary-500" alt="Rallly" />
               </a>
             </Link>
-            <span className="absolute -bottom-6 right-0 text-sm text-slate-400 transition-colors">
-              <Trans t={t} i18nKey="3Ls" components={{ e: <em /> }} />
-            </span>
           </div>
         </div>
         <Menu className="hidden items-center space-x-8 md:flex" />
