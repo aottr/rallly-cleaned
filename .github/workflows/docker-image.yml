@@ -24,16 +24,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and publish image
         uses: docker/build-push-action@v3
         with:
+          context: .
           platforms: linux/amd64
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           tags: |
-            aottr/rallly-cleaned:latest
-            aottr/rallly-cleaned:${{ github.sha }}
+            ghcr.io/aottr/rallly-cleaned:latest
+            ghcr.io/aottr/rallly-cleaned:${{ github.sha }}
